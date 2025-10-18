@@ -3,96 +3,146 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>modern</title>
+  <title>The Modern Man's Closet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary-color: #2c3e50; /* Deep Slate Blue */
+      --secondary-color: #c0392b; /* Muted Red/Burgundy for accent */
+      --background-color: #f4f7f6; /* Very light grey/off-white */
+      --card-bg: #ffffff;
+      --text-color: #333333;
+      --light-text: #7f8c8d;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
     }
 
     body {
-      background: #f8f8f8;
-      color: #222;
+      background: var(--background-color);
+      color: var(--text-color);
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
     }
 
+    /* --- Header Styles --- */
     header {
-      background: #111;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      font-size: 1.8em;
-      letter-spacing: 1px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      background: var(--card-bg); /* White header for a clean look */
+      border-bottom: 1px solid #ecf0f1;
+      padding: 15px 20px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
+    .logo-title-group {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      width: 40px; /* Smaller, elegant logo size */
+      height: 40px;
+      object-fit: contain;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8em;
+      font-weight: 700;
+      color: var(--primary-color);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    
+    /* --- Product Grid Styles --- */
     .container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 30px;
-      max-width: 1200px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px; /* Increased gap for better breathing room */
+      padding: 40px 20px;
+      max-width: 1280px;
       margin: auto;
     }
 
     .product {
-      background: #fff;
-      border-radius: 10px;
+      background: var(--card-bg);
+      border-radius: 8px; /* Slightly softer corners */
       overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* More subtle, professional shadow */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
     }
 
     .product:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
     }
 
     .product img {
       width: 100%;
-      height: 230px;
+      height: 250px; /* Slightly taller image for better focus */
       object-fit: cover;
+      border-bottom: 1px solid #ecf0f1;
     }
 
     .product-content {
-      padding: 15px;
+      padding: 20px;
       text-align: center;
+      flex-grow: 1; /* Ensures content fills space if images are different sizes */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .product h3 {
-      font-size: 1.2em;
-      margin-bottom: 8px;
-      color: #111;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3em;
+      margin-bottom: 5px;
+      color: var(--primary-color);
     }
 
     .product p {
-      font-size: 0.95em;
-      color: #555;
-      margin-bottom: 10px;
+      font-size: 0.9em;
+      color: var(--light-text);
+      margin-bottom: 15px;
+      height: 36px; /* Fixed height for description */
+      overflow: hidden;
     }
 
     .price {
-      color: #e91e63;
-      font-weight: bold;
-      margin-bottom: 10px;
-      font-size: 1.1em;
+      color: var(--secondary-color);
+      font-weight: 700;
+      margin-bottom: 15px;
+      font-size: 1.4em; /* Larger price for emphasis */
     }
 
     .order-btn {
-      background: #111;
+      background: var(--primary-color);
       color: white;
       border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
+      padding: 12px 25px;
+      border-radius: 4px;
       cursor: pointer;
-      transition: 0.3s;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: background 0.3s ease, transform 0.1s ease;
+      width: 100%; /* Full width button */
     }
 
     .order-btn:hover {
-      background: #e91e63;
+      background: var(--secondary-color);
+      transform: translateY(-2px);
     }
-
-    /* Popup Form */
+    
+    /* --- Popup Form Styles (Minor professional tweaks) --- */
     .popup {
       display: none;
       position: fixed;
@@ -100,143 +150,220 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.5);
+      background: rgba(44, 62, 80, 0.7); /* Darker overlay for focus */
       align-items: center;
       justify-content: center;
       z-index: 1000;
+      padding: 20px;
     }
 
     .popup-content {
-      background: white;
-      padding: 25px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 380px;
       text-align: center;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      box-shadow: 0 5px 25px rgba(0,0,0,0.2);
     }
 
     .popup-content h2 {
+      font-family: 'Playfair Display', serif;
       margin-bottom: 20px;
-      color: #111;
+      color: var(--primary-color);
+      font-size: 1.6em;
+    }
+
+    .popup-content p#productInfo {
+      color: var(--primary-color);
+      font-weight: 500;
+      margin-bottom: 15px;
+      font-size: 1.1em;
     }
 
     .popup-content input {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #bdc3c7;
+      border-radius: 4px;
       font-size: 1em;
+      font-family: 'Roboto', sans-serif;
     }
 
     .popup-content button {
-      background: #111;
+      background: var(--primary-color);
       color: white;
-      padding: 10px 15px;
+      padding: 12px 15px;
       border: none;
-      border-radius: 5px;
+      border-radius: 4px;
       cursor: pointer;
-      margin-top: 10px;
+      margin-top: 15px;
+      font-weight: 500;
       transition: background 0.3s;
+      width: 48%; /* Adjusting button width for a two-column layout */
+      margin: 5px 1%;
     }
-
+    
     .popup-content button:hover {
-      background: #e91e63;
+      background: var(--secondary-color);
     }
 
-    @media (max-width: 600px) {
-      header {
-        font-size: 1.4em;
+    /* Specific style for cancel button */
+    .popup-content button:nth-last-child(1) { 
+      background: #7f8c8d; 
+    }
+    .popup-content button:nth-last-child(1):hover { 
+      background: #95a5a6; 
+    }
+    
+    /* --- Responsive Adjustments (Professional on Phone) --- */
+    @media (max-width: 768px) {
+      /* Grid handles primary responsiveness, these are fine-tuning */
+      .container {
+        gap: 20px;
+        padding: 20px 15px;
       }
+      
+      header h1 {
+        font-size: 1.5em;
+      }
+      
+      .logo {
+        width: 35px;
+        height: 35px;
+      }
+      
+      .product img {
+        height: 200px; /* Slightly reduced image height on smaller screens */
+      }
+      
       .product h3 {
-        font-size: 1em;
+        font-size: 1.2em;
       }
-      .product p {
-        font-size: 0.85em;
-      }
-      .order-btn {
-        padding: 8px 15px;
+      
+      .price {
+        font-size: 1.2em;
       }
     }
+    
+    @media (max-width: 480px) {
+        /* On very small phones, stack the header elements if necessary */
+        .logo-title-group {
+            flex-direction: row;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 1.3em;
+            text-align: center;
+        }
+        
+        .product-content {
+            padding: 15px;
+        }
+    }
+    
   </style>
 </head>
 <body>
 
-  <header>The Modern Mans's Closet — Your One-Stop Fashion Shop</header>
+  <header>
+    <div class="logo-title-group">
+      <img src="logo.jpg" alt="Company Logo" class="logo" />
+      <h1>The Modern Man's Closet</h1>
+    </div>
+  </header>
 
   <section class="container">
-    <!-- Product 1 -->
     <div class="product" data-id="TT001" data-name="Casual T-Shirt">
-      <img src="tShirt.png" alt="T-Shirt" />
+      <img src="tShirt.png" alt="Casual T-Shirt" />
       <div class="product-content">
-        <h3>Casual T-Shirt</h3>
-        <p>Soft cotton t-shirt perfect for daily wear.</p>
-        <div class="price">₹499</div>
-        <button class="order-btn">Order</button>
+        <div>
+          <h3>Casual T-Shirt</h3>
+          <p>Soft cotton t-shirt perfect for daily, comfortable wear.</p>
+        </div>
+        <div>
+          <div class="price">₹499</div>
+          <button class="order-btn">Order Now</button>
+        </div>
       </div>
     </div>
 
-    <!-- Product 2 -->
     <div class="product" data-id="TT002" data-name="Denim Jacket">
-      <img src="denimJacket.png" alt="Jacket" />
+      <img src="denimJacket.png" alt="Denim Jacket" />
       <div class="product-content">
-        <h3>Denim Jacket</h3>
-        <p>Classic blue denim jacket for all seasons.</p>
-        <div class="price">₹999</div>
-        <button class="order-btn">Order</button>
+        <div>
+          <h3>Denim Jacket</h3>
+          <p>Classic blue denim jacket for a timeless, rugged look.</p>
+        </div>
+        <div>
+          <div class="price">₹999</div>
+          <button class="order-btn">Order Now</button>
+        </div>
       </div>
     </div>
 
-    <!-- Product 3 -->
-    <div class="product" data-id="TT003" data-name="Running Shoes">
-      <img src="tShirt2.png" alt="Shoes" />
+    <div class="product" data-id="TT003" data-name="T shirt Trendy">
+      <img src="tShirt2.png" alt="Trendy T-shirt" />
       <div class="product-content">
-        <h3>T shirt Trendy</h3>
-        <p>Comfortable and stylish shoes for everyday runs.</p>
-        <div class="price">₹799</div>
-        <button class="order-btn">Order</button>
+        <div>
+          <h3>T shirt Trendy</h3>
+          <p>Modern fit and comfortable fabric for a stylish update.</p>
+        </div>
+        <div>
+          <div class="price">₹799</div>
+          <button class="order-btn">Order Now</button>
+        </div>
       </div>
     </div>
 
-    <!-- Product 4 -->
     <div class="product" data-id="TT004" data-name="Stylish Hoodie">
-      <img src="hoddie.png" alt="Hoodie" />
+      <img src="hoddie.png" alt="Stylish Hoodie" />
       <div class="product-content">
-        <h3>Stylish Hoodie</h3>
-        <p>Warm fleece hoodie for cozy evenings.</p>
-        <div class="price">₹649</div>
-        <button class="order-btn">Order</button>
+        <div>
+          <h3>Stylish Hoodie</h3>
+          <p>Warm fleece hoodie, ideal for cozy evenings or casual outings.</p>
+        </div>
+        <div>
+          <div class="price">₹649</div>
+          <button class="order-btn">Order Now</button>
+        </div>
       </div>
     </div>
 
-    <!-- Product 5 -->
     <div class="product" data-id="TT005" data-name="Leather Belt">
-      <img src="LeatherBelt.png" alt="Belt" />
+      <img src="LeatherBelt.png" alt="Leather Belt" />
       <div class="product-content">
-        <h3>Leather Belt</h3>
-        <p>Premium quality leather belt for men.</p>
-        <div class="price">₹699</div>
-        <button class="order-btn">Order</button>
+        <div>
+          <h3>Leather Belt</h3>
+          <p>Premium quality leather belt to complete any formal look.</p>
+        </div>
+        <div>
+          <div class="price">₹699</div>
+          <button class="order-btn">Order Now</button>
+        </div>
       </div>
     </div>
 
-    <!-- Product 6 -->
     <div class="product" data-id="TT006" data-name="Summer T-shirt">
-      <img src="SummerTshirt.png" alt="Dress" />
+      <img src="SummerTshirt.png" alt="Summer T-shirt" />
       <div class="product-content">
-        <h3>Summer Beach</h3>
-        <p>Light and breezy dress perfect for warm days.</p>
-        <div class="price">₹369</div>
-        <button class="order-btn">Order</button>
+        <div>
+          <h3>Summer Beach</h3>
+          <p>Light and breezy cotton t-shirt perfect for warm days.</p>
+        </div>
+        <div>
+          <div class="price">₹369</div>
+          <button class="order-btn">Order Now</button>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Popup Form -->
   <div class="popup" id="popup">
     <div class="popup-content">
-      <h2>Order Details</h2>
+      <h2>Place Your Order</h2>
       <p id="productInfo"></p>
       <input type="text" id="name" placeholder="Enter your name" required />
       <input type="number" id="quantity" placeholder="Enter quantity" required min="1" />
@@ -261,6 +388,8 @@
           id: product.getAttribute("data-id")
         };
         productInfo.textContent = `${currentProduct.name} (ID: ${currentProduct.id})`;
+        document.getElementById("name").value = ''; // Clear previous data
+        document.getElementById("quantity").value = 1; // Reset quantity
         popup.style.display = "flex";
       });
     });
@@ -273,12 +402,12 @@
       const name = document.getElementById("name").value.trim();
       const qty = document.getElementById("quantity").value.trim();
 
-      if (!name || !qty) {
-        alert("Please fill all details!");
+      if (!name || !qty || parseInt(qty) < 1) {
+        alert("Please enter a valid name and quantity (must be 1 or more).");
         return;
       }
 
-      const phoneNumber = "917597251865"; // <-- Replace with your WhatsApp number
+      const phoneNumber = "917597251865"; // <-- Your WhatsApp number
       const message = `Hello, I want to order:\nProduct: ${currentProduct.name}\nItem ID: ${currentProduct.id}\nName: ${name}\nQuantity: ${qty}`;
       const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
       window.open(url, "_blank");
